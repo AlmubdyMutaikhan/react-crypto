@@ -1,0 +1,48 @@
+.card {
+  height: 20%;
+  width: 20%;
+  background: gray;
+  display: flex;
+  padding: 2% 5%;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.card-title {
+  height: 30%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.card .card-title .image-holder {
+  width: auto;
+}
+
+.card-title .image-holder img {
+  height: 40px;
+  width: 40px;
+}
+
+@media only screen and (max-width: 600px) {
+  .card {
+    height: 100%;
+    width: 90%;
+    background: gray;
+    display: flex;
+    padding: 2% 5%;
+    flex-direction: column;
+    margin: 10px;
+  }
+
+  .card-title {
+    height: 30%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
