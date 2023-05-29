@@ -81,7 +81,6 @@ function App() {
 
   return (
     <>
-      <Header />
       <Searchbar sortElements={sortElements} />
       <Grid coins={coins} loading={loading} />
       <PaginationButton pagingNext={pagingNext} pagingPrev={pagingPrev} />

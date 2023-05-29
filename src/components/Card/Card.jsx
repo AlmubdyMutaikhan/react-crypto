@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import './Card.css';
 
 const Card = ({ uuid, name, img, price, cap }) => {
@@ -12,8 +13,14 @@ const Card = ({ uuid, name, img, price, cap }) => {
       return Math.ceil(number * 100) / 100;
     }
   };
+  const navigate = useNavigate();
   return (
-    <div className="card">
+    <div
+      className="card"
+      onClick={() => {
+        navigate('/coin/' + uuid);
+      }}
+    >
       <div className="card-title">
         <div className="image-holder">
           <img src={img} alt={name} />
