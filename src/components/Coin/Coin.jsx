@@ -39,7 +39,9 @@ const Coin = ({}) => {
           <h1>Graph</h1>
         </div>
       </div>
+
       <div className="coin-info">
+        <h1>Description: </h1>
         <p>{coin.description}</p>
       </div>
     </div>

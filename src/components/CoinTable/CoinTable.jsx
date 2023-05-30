@@ -45,7 +45,8 @@ const CoinTable = ({ style, coin }) => {
       return (
         <li key={key}>
           <img src={i.icon} width={'20'} height={'20'} />
-          {i.data === 'null' || i.data === 'NaN' || i.data === NaN ? (
+          {console.log(i)}
+          {i.data === 'null' || i.data === 'NaN' ? (
             <Skeleton width={'150'} />
           ) : (
             <p>
