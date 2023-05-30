@@ -9,25 +9,29 @@ const Grid = ({ coins, loading }) => {
   return (
     <>
       <div className="grid">
-        {coins.map((coin, key) => {
-          return loading ? (
-            <CardSkelton
-              name={coin.name}
-              uuid={coin.uuid}
-              img={coin.iconUrl}
-              cap={coin.marketCap}
-              price={coin.price}
-            />
-          ) : (
-            <Card
-              name={coin.name}
-              uuid={coin.uuid}
-              img={coin.iconUrl}
-              cap={coin.marketCap}
-              price={coin.price}
-            />
-          );
-        })}
+        {coins.length !== 0 ? (
+          coins.map((coin, key) => {
+            return loading ? (
+              <CardSkelton
+                name={coin.name}
+                uuid={coin.uuid}
+                img={coin.iconUrl}
+                cap={coin.marketCap}
+                price={coin.price}
+              />
+            ) : (
+              <Card
+                name={coin.name}
+                uuid={coin.uuid}
+                img={coin.iconUrl}
+                cap={coin.marketCap}
+                price={coin.price}
+              />
+            );
+          })
+        ) : (
+          <h1>No coins available with this name</h1>
+        )}
       </div>
     </>
   );
