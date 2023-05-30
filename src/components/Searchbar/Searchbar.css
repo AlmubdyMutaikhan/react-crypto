@@ -86,3 +86,19 @@
     margin-top: 20px;
   }
 }
+
+@media only screen and (min-width: 600px) and (max-width: 950px) {
+  .search-bar {
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: static;
+
+    align-items: center;
+    justify-content: center;
+    margin-top: -50px;
+  }
+  .searchbtn {
+    margin-top: 20px;
+  }
+}
