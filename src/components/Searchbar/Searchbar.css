@@ -9,6 +9,11 @@
   display: flex;
   flex-direction: column;
 }
+
+input {
+  color: white;
+}
+
 .search-bar {
   position: absolute;
   width: 100%;
