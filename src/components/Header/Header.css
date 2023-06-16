@@ -8,6 +8,7 @@ header {
 }
 
 header .logo {
+  cursor: pointer;
   display: flex;
   width: 12%;
   max-width: 20%;
