@@ -1,6 +1,7 @@
-import Skeleton from 'react-loading-skeleton';
 import './CoinTable.css';
-
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+import Skel from '../Skel/Skel';
 const CoinTable = ({ style, coin }) => {
   const formatNumber = (number) => {
     if (Math.abs(number) >= 1e9) {
@@ -45,9 +46,11 @@ const CoinTable = ({ style, coin }) => {
       return (
         <li key={key}>
           <img src={i.icon} width={'20'} height={'20'} />
-          {console.log(i)}
-          {i.data === 'null' || i.data === 'NaN' ? (
-            <Skeleton width={'150'} />
+
+          {(typeof i.data === 'number' && isNaN(i.data)) ||
+          i.data === undefined ||
+          i.data === 'null' ? (
+            <Skel />
           ) : (
             <p>
               {i.name}: {i.data}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './Coin.css';
+import Skel from '../Skel/Skel';
 import CoinTable from '../CoinTable/CoinTable';
 const Coin = ({}) => {
   const [loading, setLoading] = useState(true);
@@ -18,7 +19,7 @@ const Coin = ({}) => {
     fetch('https://api.coinranking.com/v2/coin/' + params.uuid, options)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result.data.coin);
+        // console.log(result.data.coin);
         setCoin(result.data.coin);
         setLoading(false);
       });
@@ -42,7 +43,11 @@ const Coin = ({}) => {
 
       <div className="coin-info">
         <h1>Description: </h1>
-        <p>{coin.description}</p>
+        <p>
+          {coin.description !== undefined
+            ? coin.description
+            : 'Loading, please wait'}
+        </p>
       </div>
     </div>
   );

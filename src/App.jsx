@@ -4,7 +4,7 @@ import Header from './components/Header/Header';
 import PaginationButton from './components/PaginationButtons/PaginationButtons';
 import Searchbar from './components/Searchbar/Searchbar';
 import { useState, useEffect } from 'react';
-
+import { loadCards } from './services/Coins.services';
 function App() {
   const [coins, setCoins] = useState(
     new Array(8).fill({
@@ -15,43 +15,16 @@ function App() {
       price: '',
     })
   );
-
-  const [allCoins, setAllCoins] = useState([]);
+  const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(true);
-  const options = {
-    headers: {
-      'Content-Type': 'application/json',
-      'x-access-token':
-        'coinranking641b8e03c6689a09d436e7dce199f6a971f309426c50efb3',
-    },
-  };
-  const loadCardsBasic = () => {
-    fetch('https://api.coinranking.com/v2/coins?limit=10', options)
-      .then((response) => response.json())
-      .then((result) => {
-        console.log('res');
-        setCoins(result.data.coins);
-        setLoading(false);
-      });
-  };
-
-  const loadCards = () => {
-    fetch('https://api.coinranking.com/v2/coins?limit=500', options)
-      .then((response) => response.json())
-      .then((result) => {
-        console.log('res2');
-        setAllCoins(result.data.coins);
-      });
-  };
 
   const pagingNext = () => {
-    setCoins(updatePage(1));
+    updatePage('+');
   };
 
   const pagingPrev = () => {
-    const page = parseInt(localStorage.getItem('page'));
-    if (page > 1) {
-      setCoins(updatePage(-1));
+    if (offset >= 10) {
+      updatePage('-');
     }
   };
 
@@ -66,17 +39,14 @@ function App() {
     }
   };
 
-  const updatePage = (increment) => {
-    let page = parseInt(localStorage.getItem('page')) + increment;
-    let coins = allCoins.slice(page * 10 - 10, page * 10);
-    localStorage.setItem('page', page);
-    return coins;
+  const updatePage = (sign) => {
+    const change = sign === '+' ? 10 : -10;
+    loadCards(offset + change, setCoins, setLoading);
+    setOffset((offset) => offset + change);
   };
 
   useEffect(() => {
-    loadCardsBasic();
-    loadCards();
-    localStorage.setItem('page', 1);
+    loadCards(offset, setCoins, setLoading);
   }, []);
 
   return (
